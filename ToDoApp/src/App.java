@@ -16,6 +16,8 @@ public class App {
       list.listToDos();
     } else if (args[0].contains("-a")) {
       list.addToDo();
+    } else if (args[0].contains("-r")) {
+      list.removeTask();
     }
   }
 }

@@ -40,20 +40,42 @@ public class ToDoList {
       System.out.println("nothing to do today! :)");
     } else {
       for (int i = 0; i < lines.size(); i++) {
-        System.out.println(i + 1 + ". " + lines.get(i));
+        System.out.println(i + 1 + " - " + lines.get(i));
       }
     }
   }
 
   void addToDo() {
     Path filePath = Paths.get("todolist.txt");
-    List<String> lines = null;
-    try {
-      lines = Files.readAllLines(filePath);
-      lines.add(lines.size(), args[1]);
-      Files.write(filePath, lines);
-    } catch (IOException e) {
-      e.printStackTrace();
+    List<String> lines;
+
+    if (args.length == 1) {
+      System.out.println("Unable to add: no task provided");
+    } else {
+      try {
+        lines = Files.readAllLines(filePath);
+        lines.add(lines.size(), args[1]);
+        Files.write(filePath, lines);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+
+  void removeTask() {
+    Path filePath = Paths.get("todolist.txt");
+    List<String> lines;
+
+    if (args.length == 1) {
+      System.out.println("Unable to remove: no index provided");
+    } else {
+      try {
+        lines = Files.readAllLines(filePath);
+        lines.remove(Integer.parseInt(args[1]) - 1);
+        Files.write(filePath, lines);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     }
   }
 }
