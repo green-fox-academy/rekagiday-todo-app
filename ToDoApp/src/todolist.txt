@@ -1,4 +1,4 @@
 [ ] Feed the geckos
-[ ] Buy coffee
+[x] Buy coffee
 [ ] Read the manual
 [ ] Practice for exams

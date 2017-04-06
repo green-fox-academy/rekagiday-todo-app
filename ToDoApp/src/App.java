@@ -9,6 +9,7 @@ public class App {
   public static void main(String[] args) {
 
     ToDoList list = new ToDoList(args);
+    ToDo task = new ToDo(args);
 
     if (args.length == 0 || args[0].charAt(0) != '-') {
       list.printUsage();
@@ -18,6 +19,8 @@ public class App {
       list.addToDo();
     } else if (args[0].contains("-r")) {
       list.removeTask();
+    } else if (args[0].contains("-c")) {
+      task.checkTask();
     }
   }
 }
