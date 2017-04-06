@@ -10,7 +10,7 @@ public class App {
 
     ToDoList list = new ToDoList(args);
 
-    if (args.length == 0) {
+    if (args.length == 0 || args[0].charAt(0) != '-') {
       list.printUsage();
     } else if (args[0].contains("-l")) {
       list.listToDos();
