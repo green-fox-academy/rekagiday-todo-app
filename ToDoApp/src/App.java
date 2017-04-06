@@ -12,7 +12,7 @@ public class App {
 
     if (args.length == 0) {
       list.printUsage();
-    } else if (args[0].contains("l"))
+    } else if (args[0].contains("-l"))
       list.listToDos();
   }
 }

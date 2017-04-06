@@ -22,7 +22,7 @@ public class ToDoList {
     }
   }
 
-  void listToDos(){
+  void listToDos() {
     Path filePath = Paths.get("todolist.txt");
     List<String> lines = null;
     try {
@@ -30,8 +30,12 @@ public class ToDoList {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    for (int i = 0; i < lines.size(); i++) {
-      System.out.println(i + 1 + ". " + lines.get(i));
+    if (lines.size() == 0) {
+      System.out.println("nothing to do today! :)");
+    } else {
+      for (int i = 0; i < lines.size(); i++) {
+        System.out.println(i + 1 + ". " + lines.get(i));
+      }
     }
   }
 }
