@@ -8,28 +8,11 @@ public class App {
 
   public static void main(String[] args) {
 
-    if (args.equals("")) {
-      Path filePath = Paths.get("usage.txt");
-      List<String> lines = null;
-      try {
-        lines = Files.readAllLines(filePath);
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-      for (int i = 0; i < lines.size(); i++) {
-        System.out.println(lines.get(i));
-      }
-    } else if (args.toString().contains("l")) {
-      Path filePath = Paths.get("todolist.txt");
-      List<String> lines = null;
-      try {
-        lines = Files.readAllLines(filePath);
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-      for (int i = 0; i < lines.size(); i++) {
-        System.out.println(i+1 + ". " + lines.get(i));
-      }
-    }
+    ToDoList list = new ToDoList();
+
+    if (args.length == 0) {
+      list.printUsage();
+    } else if (args[0].contains("l"))
+      list.listToDos();
   }
 }
