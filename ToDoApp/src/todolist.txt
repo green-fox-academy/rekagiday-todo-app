@@ -1,2 +1,4 @@
-Do homework
-Buy milk
+[ ] Feed the geckos
+[ ] Buy coffee
+[ ] Read the manual
+[ ] Practice for exams

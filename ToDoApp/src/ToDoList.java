@@ -54,7 +54,7 @@ public class ToDoList {
     } else {
       try {
         lines = Files.readAllLines(filePath);
-        lines.add(lines.size(), args[1]);
+        lines.add(lines.size(), "[ ] " + args[1]);
         Files.write(filePath, lines);
       } catch (IOException e) {
         e.printStackTrace();
