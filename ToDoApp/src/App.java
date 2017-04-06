@@ -8,11 +8,14 @@ public class App {
 
   public static void main(String[] args) {
 
-    ToDoList list = new ToDoList();
+    ToDoList list = new ToDoList(args);
 
     if (args.length == 0) {
       list.printUsage();
-    } else if (args[0].contains("-l"))
+    } else if (args[0].contains("-l")) {
       list.listToDos();
+    } else if (args[0].contains("-a")) {
+      list.addToDo();
+    }
   }
 }

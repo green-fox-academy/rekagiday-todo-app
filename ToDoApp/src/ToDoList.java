@@ -9,6 +9,12 @@ import java.util.List;
  */
 public class ToDoList {
 
+  String[] args;
+
+  public ToDoList(String[] args) {
+    this.args = args;
+  }
+
   void printUsage() {
     Path filePath = Paths.get("usage.txt");
     List<String> lines = null;
@@ -38,5 +44,20 @@ public class ToDoList {
       }
     }
   }
+
+  void addToDo() {
+    Path filePath = Paths.get("todolist.txt");
+    List<String> lines = null;
+    try {
+      lines = Files.readAllLines(filePath);
+      lines.add(lines.size(), args[1]);
+      Files.write(filePath, lines);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 }
+
+
+
 
