@@ -2,7 +2,8 @@ Java Todo application
 =======================
 
 Command line arguments:
- -l   Lists all the tasks
- -a   Adds a new task
- -r   Removes an task
- -c   Completes an task
+ -l             Lists all the tasks
+ -a "task"      Adds a new task (default priority = 3)
+ -a 1 "task"    Adds task with priority (set priority 1, 2 or 3)
+ -r 3           Removes a task
+ -c 3           Completes a task

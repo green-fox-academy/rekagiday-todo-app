@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -40,7 +41,11 @@ public class ToDoList {
       System.out.println("nothing to do today! :)");
     } else {
       for (int i = 0; i < lines.size(); i++) {
-        System.out.println(i + 1 + " - " + lines.get(i));
+        if (i < 9) {
+          System.out.println(" " + (i + 1) + " - " + lines.get(i));
+        } else {
+          System.out.println((i + 1) + " - " + lines.get(i));
+        }
       }
     }
   }
@@ -53,12 +58,21 @@ public class ToDoList {
       System.out.println("Unable to add: no task provided");
     } else {
       try {
-        lines = Files.readAllLines(filePath);
-        lines.add(lines.size(), "[ ] " + args[1]);
-        Files.write(filePath, lines);
+        if (args[1].length() == 1) {
+          lines = Files.readAllLines(filePath);
+          lines.add(lines.size(), args[1] + " [_] " + args[2]);
+          Collections.sort(lines);
+          Files.write(filePath, lines);
+        } else {
+          lines = Files.readAllLines(filePath);
+          lines.add(lines.size(), "3 [_] " + args[1]);
+          Collections.sort(lines);
+          Files.write(filePath, lines);
+        }
       } catch (IOException e) {
         e.printStackTrace();
       }
+      listToDos();
     }
   }
 
@@ -80,6 +94,7 @@ public class ToDoList {
     } catch (Exception ex) {
       System.out.println("Unable to remove: index is not a number");
     }
+    listToDos();
   }
 }
 
