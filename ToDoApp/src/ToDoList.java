@@ -81,9 +81,6 @@ public class ToDoList {
       System.out.println("Unable to remove: index is not a number");
     }
   }
-
-
-
 }
 
 

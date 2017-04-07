@@ -18,10 +18,9 @@ public class ToDo {
   void checkTask() {
     Path filePath = Paths.get("todolist.txt");
     List<String> lines;
-    String stuff;
     try {
       lines = Files.readAllLines(filePath);
-      stuff = lines.get(Integer.parseInt(args[1]) - 1);
+      String stuff = lines.get(Integer.parseInt(args[1]) - 1);
       String newString = stuff.replaceFirst(" ", "x");
       lines.set((Integer.parseInt(args[1]) - 1), newString);
       Files.write(filePath, lines);

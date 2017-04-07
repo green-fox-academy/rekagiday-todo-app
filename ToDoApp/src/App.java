@@ -11,7 +11,10 @@ public class App {
     ToDoList list = new ToDoList(args);
     ToDo task = new ToDo(args);
 
-    if (args.length == 0 || args[0].charAt(0) != '-') {
+    if (args.length == 0) {
+      list.printUsage();
+    } else if (args[0].charAt(0) != '-') {
+      System.out.println("Unsupported argument");
       list.printUsage();
     } else if (args[0].contains("-l")) {
       list.listToDos();
