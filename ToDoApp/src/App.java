@@ -15,6 +15,7 @@ public class App {
       list.printUsage();
     } else if (args[0].charAt(0) != '-') {
       System.out.println("Unsupported argument");
+      System.out.println();
       list.printUsage();
     } else if (args[0].contains("-l")) {
       list.listToDos();
