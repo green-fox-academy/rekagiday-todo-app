@@ -10,6 +10,16 @@ import java.util.List;
  */
 public class ToDoList {
 
+  public static final String ANSI_RESET = "\u001B[0m";
+  public static final String ANSI_BLACK = "\u001B[30m";
+  public static final String ANSI_RED = "\u001B[31m";
+  public static final String ANSI_GREEN = "\u001B[32m";
+  public static final String ANSI_YELLOW = "\u001B[33m";
+  public static final String ANSI_BLUE = "\u001B[34m";
+  public static final String ANSI_PURPLE = "\u001B[35m";
+  public static final String ANSI_CYAN = "\u001B[36m";
+  public static final String ANSI_WHITE = "\u001B[37m";
+
   String[] args;
 
   public ToDoList(String[] args) {
@@ -34,6 +44,7 @@ public class ToDoList {
     List<String> lines = null;
     try {
       lines = Files.readAllLines(filePath);
+      Collections.sort(lines);
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -42,7 +53,15 @@ public class ToDoList {
     } else {
       for (int i = 0; i < lines.size(); i++) {
         if (i < 9) {
-          System.out.println(" " + (i + 1) + " - " + lines.get(i));
+          if (lines.get(i).contains("[x]")) {
+            System.out.println(ANSI_GREEN + " " + (i + 1) + " - " + lines.get(i) + ANSI_RESET);
+          } else if (lines.get(i).contains("1") && lines.get(i).contains("[_]")) {
+            System.out.println(ANSI_RED + " " + (i + 1) + " - " + lines.get(i) + ANSI_RESET);
+          } else if (lines.get(i).contains("2") && lines.get(i).contains("[_]")) {
+            System.out.println(ANSI_YELLOW + " " + (i + 1) + " - " + lines.get(i) + ANSI_RESET);
+          } else {
+            System.out.println(" " + (i + 1) + " - " + lines.get(i));
+          }
         } else {
           System.out.println((i + 1) + " - " + lines.get(i));
         }
@@ -53,12 +72,14 @@ public class ToDoList {
   void addToDo() {
     Path filePath = Paths.get("todolist.txt");
     List<String> lines;
-
-    if (args.length == 1) {
+    if (args.length == 1 || args.length == 2 && Integer.parseInt(args[1]) < 4
+        && Integer.parseInt(args[1]) > 0) {
       System.out.println("Unable to add: no task provided");
     } else {
       try {
-        if (args[1].length() == 1) {
+        if (Integer.parseInt(args[1]) == 1
+            || Integer.parseInt(args[1]) == 2
+            || Integer.parseInt(args[1]) == 3) {
           lines = Files.readAllLines(filePath);
           lines.add(lines.size(), args[1] + " [_] " + args[2]);
           Collections.sort(lines);
@@ -87,6 +108,7 @@ public class ToDoList {
         System.out.println("Unable to remove: index is out of bound");
       } else {
         lines.remove(Integer.parseInt(args[1]) - 1);
+        Collections.sort(lines);
         Files.write(filePath, lines);
       }
     } catch (IOException e) {

@@ -1,7 +1,7 @@
 1 [_] First task
-1 [x] Second task
 1 [_] Third task
 1 [_] Very important other task
+1 [x] Second task
 2 [_] Not so important fifth task
 2 [_] Not so important fourth task
 3 [_] Not important sixth task
