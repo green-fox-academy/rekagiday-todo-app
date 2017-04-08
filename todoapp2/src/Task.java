@@ -12,8 +12,13 @@ public class Task {
     this.priority = Integer.parseInt(taskData[0]);
     this.done = Boolean.parseBoolean(taskData[1]);
     this.title = taskData[2];
-
   }
+
+  public Task(int prio, String title){
+    this.priority = prio;
+    this.title = title;
+  }
+
 
   public String getTitle() {
     return title;
@@ -26,6 +31,12 @@ public class Task {
   public int getPriority() {
     return priority;
   }
+
+  String toCsvFormat(){
+    return priority+";"+done+";"+title;
+  }
+
+
 
   @Override
   public String toString() {
